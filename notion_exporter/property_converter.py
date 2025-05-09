@@ -34,6 +34,7 @@ class PropertyConverter:
             "status": self.status,
             "title": self.title,
             "url": self.url,
+            "verification": self.verification,
         }
         self.notion_exporter = notion_exporter
 
@@ -206,3 +207,11 @@ class PropertyConverter:
         """
         url = property_item["url"] if property_item["url"] else ""
         return url
+
+    @staticmethod
+    def verification(property_item: dict) -> str:
+        """
+        Converts a verification property to a Markdown string.
+        """
+        verification = property_item["verification"]["state"] if property_item["verification"] else ""
+        return verification
