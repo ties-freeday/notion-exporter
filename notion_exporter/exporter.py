@@ -312,7 +312,7 @@ class NotionExporter:
         else:
             title = (
                 page_object["properties"]["title"]["title"][0]["plain_text"]
-                if page_object["properties"]["title"] and page_object["properties"]["title"]["title"]
+                if len(page_object.get("properties", {}).get("title", {}).get("title", [])) > 0
                 else ""
             )
 
