@@ -316,6 +316,13 @@ class NotionExporter:
                 else ""
             )
 
+        all_tags = None
+        if tags := page_object["properties"].get("Tags"):
+            match tags.get("type"):
+                case "multi_select":
+                    all_tags = [tag['name'] for tag in tags['multi_select']]
+
+
         page_meta = {
             "title": title,
             "url": page_object["url"],
@@ -324,6 +331,7 @@ class NotionExporter:
             "last_edited_time": page_object["last_edited_time"],
             "page_id": page_object["id"],
             "parent_id": page_object["parent"][page_object["parent"]["type"]],
+            "tags": all_tags
         }
         if properties:
             page_meta["properties"] = properties
@@ -408,6 +416,7 @@ class NotionExporter:
             front_matter += f"created_by: {page_meta['created_by']}\n"
             front_matter += f"last_edited_by: {page_meta['last_edited_by']}\n"
             front_matter += f"last_edited_time: {page_meta['last_edited_time']}\n"
+            front_matter += f"Tags: {page_meta['tags']}\n"
             front_matter += "---\n\n"
 
         # Add properties of database entries as key-value pairs
