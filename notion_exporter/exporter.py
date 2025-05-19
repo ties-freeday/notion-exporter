@@ -410,6 +410,7 @@ class NotionExporter:
         if self.extract_page_metadata:
             front_matter += "---\n"
             front_matter += f"title: {page_meta['title']}\n"
+
             # Add quotation marks to avoid issues with colons in page titles
             front_matter += f'path: "{current_page_path}"\n'
             front_matter += f"url: {page_meta['url']}\n"
