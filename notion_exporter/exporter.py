@@ -416,7 +416,7 @@ class NotionExporter:
             front_matter += f"created_by: {page_meta['created_by']}\n"
             front_matter += f"last_edited_by: {page_meta['last_edited_by']}\n"
             front_matter += f"last_edited_time: {page_meta['last_edited_time']}\n"
-            front_matter += f"Tags: {page_meta['tags']}\n"
+            front_matter += f"tags: {page_meta['tags']}\n"
             front_matter += "---\n\n"
 
         # Add properties of database entries as key-value pairs
