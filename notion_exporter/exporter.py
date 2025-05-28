@@ -315,6 +315,13 @@ class NotionExporter:
                 if len(page_object.get("properties", {}).get("title", {}).get("title", [])) > 0
                 else ""
             )
+            if not title:
+                # If we are dealing with a child page, this is the way we can retrieve the title
+                title = (
+                    page_object["properties"]["Page"]["title"][0]["text"]["content"]
+                    if len(page_object.get("properties", {}).get("Page", {}).get("title", [])) > 0
+                    else ""
+                )
 
         all_tags = None
         if tags := page_object["properties"].get("Tags"):
